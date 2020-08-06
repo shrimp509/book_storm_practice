@@ -47,3 +47,17 @@ It'd be great if you can deploy this on the free tier of any cloud hosting platf
 * Add redtear1115 as collaborator to your private repository.
 * Write a introduction to all your works on following link.
   * Link: [response.md](response.md) (Current contest as an example. Feel free to edit/remove it.)
+
+# Response
+## API Document (required)
+  Import [this](data/api_doc.json) json file to Postman
+
+## Setup Data Command (required)
+  `rake import:book_store_data[PATH_TO_FILE]`  
+  `rake import:book_store_data[PATH_TO_FILE]`
+
+## Test Coverage Report(optional)
+  check report [here](data/test_report.html)
+
+## Demo Site Url (optional)
+  demo ready on [heroku](https://www.heroku.com/)
