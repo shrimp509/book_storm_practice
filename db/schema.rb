@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_131052) do
+ActiveRecord::Schema.define(version: 2020_08_27_124801) do
 
   create_table "book", force: :cascade do |t|
     t.string "book_name"
     t.integer "price"
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "books_in_bookstores", force: :cascade do |t|
@@ -33,6 +39,13 @@ ActiveRecord::Schema.define(version: 2020_08_26_131052) do
     t.time "opening_hours"
     t.string "store_name"
     t.index ["books_id"], name: "index_bookstore_on_books_id"
+  end
+
+  create_table "bookstores", force: :cascade do |t|
+    t.string "name"
+    t.float "cash_balance"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "opening_hours", force: :cascade do |t|
