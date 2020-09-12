@@ -1,34 +1,48 @@
 require 'json'
 require 'date'
 
-def load_data_as_json(file_path)
-  bookstore_raw_data = File.open(file_path)
-  json = JSON.parse(bookstore_raw_data.read)
-  bookstore_raw_data.close
-  json
-end
+class DbParser
 
-def parse_opening_hours_into_datetime opening_hours_in_str
-  opening_hours_arr = opening_hours_in_str.split('/')
-  opening_hours_arr.each do |opening_hour|
-    puts opening_hour
+  def self.clear_all_data
+    puts 'not yet implemented'
+  end
 
-    if opening_hour.include?(',')
-
-    end
-
-    if opening_hour.scan(/(?=-)/).count >= 2
-
+  def self.pour_users_data user_data_file_path
+    load_data_as_json(user_data_file_path).map do |user|
+      puts "id: #{user['id']}, name: #{user['name']}, cashBalance: #{user['cashBalance']}, purchaseHistory: #{user['purchaseHistory']}"
     end
   end
-end
 
-data = load_data_as_json('/Users/rongson/RailsProjects/book_storm_practice/data/book_store_data.json')
+  def self.pour_book_stores_data book_store_data_file_path
+    load_data_as_json(book_store_data_file_path).map do |bookstore|
+      # puts bookstore['storeName']
+      # puts bookstore['cashBalance']
+      # parse_opening_hours_into_datetime(bookstore['openingHours'])
+      # puts bookstore['books']
+      puts "storeName: #{bookstore['storeName']}, books: #{bookstore['books']}, cashBalance: #{bookstore['cashBalance']}, openingHours: #{bookstore['openingHours']}"
+    end
+  end
 
-data.map do |bookstore|
-  # puts bookstore['storeName']
-  # puts bookstore['cashBalance']
-  parse_opening_hours_into_datetime(bookstore['openingHours'])
-  # puts bookstore['books']
-  puts '-------------------'
+  private
+  def self.load_data_as_json(file_path)
+    raw_data = File.open(file_path)
+    json = JSON.parse(raw_data.read)
+    raw_data.close
+    json
+  end
+
+  def self.parse_opening_hours_into_datetime opening_hours_in_str
+    opening_hours_arr = opening_hours_in_str.split('/')
+    opening_hours_arr.each do |opening_hour|
+      puts opening_hour
+
+      if opening_hour.include?(',')
+
+      end
+
+      if opening_hour.scan(/(?=-)/).count >= 2
+
+      end
+    end
+  end
 end
