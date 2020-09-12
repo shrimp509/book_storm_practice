@@ -10,17 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_124801) do
-
-  create_table "book", force: :cascade do |t|
-    t.string "book_name"
-    t.integer "price"
-  end
+ActiveRecord::Schema.define(version: 2020_09_12_053721) do
 
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "isbn"
   end
 
   create_table "books_in_bookstores", force: :cascade do |t|
@@ -31,14 +27,6 @@ ActiveRecord::Schema.define(version: 2020_08_27_124801) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_id"], name: "index_books_in_bookstores_on_book_id"
     t.index ["bookstore_id"], name: "index_books_in_bookstores_on_bookstore_id"
-  end
-
-  create_table "bookstore", force: :cascade do |t|
-    t.integer "cash_balance"
-    t.integer "books_id"
-    t.time "opening_hours"
-    t.string "store_name"
-    t.index ["books_id"], name: "index_bookstore_on_books_id"
   end
 
   create_table "bookstores", force: :cascade do |t|
